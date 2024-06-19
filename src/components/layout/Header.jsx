@@ -5,9 +5,10 @@ import {
   Typography,
   IconButton,
   Tooltip,
+  Backdrop,
 } from "@mui/material";
 
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 
 import { orange } from "../../constants/color";
 
@@ -22,6 +23,9 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
+const SearchDialog = lazy(() => import("../specific/Search"));
+const NotificationDialog = lazy(() => import("../specific/Notifications"));
+const NewGroupDialog = lazy(() => import("../specific/NewGroup"));
 const Header = () => {
   const navigate = useNavigate();
 
@@ -85,11 +89,21 @@ const Header = () => {
                 icon={<AddIcon />}
                 onClick={openNewGroup}
               />
-              <IconBtn
+              {/* <IconBtn
                 title="Manage Group"
                 icon={<GroupIcon />}
                 onClick={navigateToGroup}
-              />
+              /> */}
+
+              <Tooltip title="Manage Group">
+                <IconButton
+                  color="inherit"
+                  size="large"
+                  onClick={navigateToGroup}
+                >
+                  <GroupIcon />
+                </IconButton>
+              </Tooltip>
               <IconBtn
                 title="Notification"
                 icon={<NotificationsIcon />}
@@ -100,20 +114,25 @@ const Header = () => {
                 icon={<LogoutIcon />}
                 onClick={logoutHandler}
               />
-
-              {/* <Tooltip title="Manage Group">
-                <IconButton
-                  color="inherit"
-                  size="large"
-                  onClick={navigateToGroup}
-                >
-                  <GroupIcon />
-                </IconButton>
-              </Tooltip> */}
             </Box>
           </Toolbar>
         </AppBar>
       </Box>
+      {isSearch && (
+        <Suspense fallback={<Backdrop open />}>
+          <SearchDialog />
+        </Suspense>
+      )}
+      {isNotification && (
+        <Suspense fallback={<Backdrop open />}>
+          <NotificationDialog />
+        </Suspense>
+      )}
+      {isNewGroup && (
+        <Suspense fallback={<Backdrop open />}>
+          <NewGroupDialog />
+        </Suspense>
+      )}
     </>
   );
 };
