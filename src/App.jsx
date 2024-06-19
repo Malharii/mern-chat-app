@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectRoute from "./components/auth/src/components/auth/ProtectRoute";
+import ProtectRoute from "./components/auth/ProtectRoute";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
