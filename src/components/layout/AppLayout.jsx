@@ -1,10 +1,21 @@
 // import React from "react";
 
+import { useParams } from "react-router-dom";
+import { samepleChats } from "../../constants/sampleData";
 import Title from "../shared/Title";
+import ChatList from "../specific/ChatList";
 import Header from "./Header";
 import { Grid } from "@mui/material";
+import Profile from "../specific/Profile";
 const AppLayout = () => (WrappedComponent) => {
   return (props) => {
+    const params = useParams();
+    const chatId = params.chatId;
+
+    const handleChatDelete = (e, _id, groupChat) => {
+      e.preventDefault();
+      console.log("delete chat", _id, groupChat);
+    };
     return (
       <div>
         <Title />
@@ -22,7 +33,11 @@ const AppLayout = () => (WrappedComponent) => {
             }}
             height={"100%"}
           >
-            frist
+            <ChatList
+              chats={samepleChats}
+              chatId={chatId}
+              handleChatDelete={handleChatDelete}
+            />
           </Grid>
           <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"}>
             <WrappedComponent {...props} />
@@ -41,7 +56,7 @@ const AppLayout = () => (WrappedComponent) => {
             lg={3}
             height={"100%"}
           >
-            third
+            <Profile />
           </Grid>
         </Grid>
       </div>
