@@ -18,7 +18,6 @@ const UserItem = ({ user, handler, handlerIsLoading }) => {
         alignItems={"center"}
         spacing={"1rem"}
         width={"100%"}
-        sx={{ bgcolor: "grey.200" }}
       >
         <Avatar />
 
@@ -31,6 +30,7 @@ const UserItem = ({ user, handler, handlerIsLoading }) => {
             WebkitLineClamp: 1,
             WebkitBoxOrient: "vertical",
             fontVariant: "all-small-caps",
+            width: "100%",
           }}
         >
           {name}
