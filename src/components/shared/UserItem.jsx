@@ -1,12 +1,5 @@
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
-import {
-  Avatar,
-  IconButton,
-  ListItem,
-  Skeleton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, IconButton, ListItem, Stack, Typography } from "@mui/material";
 import React, { memo } from "react";
 
 const UserItem = ({ user, handler, handlerIsLoading }) => {
